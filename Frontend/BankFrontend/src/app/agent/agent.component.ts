@@ -18,7 +18,9 @@ export class AgentComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-public comptes: Compte[] = [];
+
+  public comptes: Compte[] = [];
+  public compte! : Compte;
 
   constructor(private agentService: AgentService) { }
 
@@ -29,7 +31,6 @@ public comptes: Compte[] = [];
   public getAllProfessionnelsComptes() {
     this.agentService.getProfessionnelCompte().subscribe(
       (response: Compte[]) => {
-        console.log(response);
         this.comptes = response;
       },
         (error: HttpErrorResponse) => {
@@ -37,7 +38,41 @@ public comptes: Compte[] = [];
 
         }
     );
+
+    this.agentService.getStrandardCompte().subscribe(
+      (standards : any) => {
+        for(var i = 0; i < standards.length ; i++){
+          this.comptes.push(standards[i]);
+      }
+        this.dataSource =new MatTableDataSource(this.comptes)
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+      }
+    )
+
+
   }
 
+public enableCompte(compte: Compte){
+  console.log(compte.type);
+this.agentService.enableStandardCompte(compte).subscribe(
+  (standard: Compte) => {
+    this.compte = standard;
+  },
+  (error: HttpErrorResponse) => {
+    console.log(error.message);
+  }
+)
+}
+
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
 
 }

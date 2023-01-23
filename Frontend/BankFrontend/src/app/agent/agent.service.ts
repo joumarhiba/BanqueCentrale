@@ -1,4 +1,4 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Compte } from '../compte/Compte';
@@ -21,7 +21,12 @@ public getStrandardCompte(): Observable<Compte[]>{
   return this.http.get<Compte[]>(`${this.apiServerUrl}/registration/getStandards`);
 }
 
+public enableStandardCompte(standard:Compte): Observable<Compte>{
+  return this.http.put<Compte>(`${this.apiServerUrl}/registration/updateCompteStandard`, standard);
+}
 
-
+public enableProfessionnelCompte(professionnel:Compte): Observable<Compte>{
+  return this.http.put<Compte>(`${this.apiServerUrl}/registration/updateCompteProfessionnel`, professionnel);
+}
 
 }
