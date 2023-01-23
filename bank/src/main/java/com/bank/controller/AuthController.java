@@ -1,0 +1,51 @@
+package com.bank.controller;
+
+import com.bank.model.User;
+import com.bank.service.UserServiceImpl;
+import com.bank.service.helpers.AuthenticationRequest;
+import com.bank.service.helpers.JwtHandler;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.AuthenticationException;
+import org.springframework.web.bind.annotation.*;
+
+import javax.security.auth.login.CredentialNotFoundException;
+
+@RestController
+@RequestMapping
+@RequiredArgsConstructor
+public class AuthController {
+
+    private final AuthenticationManager authenticationManager;
+    private final UserServiceImpl userService;
+    private final JwtHandler jwtHandler;
+
+
+    @PostMapping("/registration/auth/{role}")
+    public ResponseEntity<String> authenticate(
+            @PathVariable String role,
+            @RequestBody AuthenticationRequest authenticationRequest
+    ) {
+        try {
+            authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(
+                            authenticationRequest.getEmail() + ":" + role,
+                            authenticationRequest.getPassword())
+            );
+
+            final User user = userService.loadUserByUsername(authenticationRequest.getEmail() + ":" + role);
+            if (user != null) {
+                return ResponseEntity.ok(jwtHandler.generateToken(user));
+            }
+
+        } catch (Exception e) {
+           e.printStackTrace();
+           return ResponseEntity.badRequest().body(e.getMessage());
+        }
+        return ResponseEntity.status(HttpStatus.FORBIDDEN)
+                .body("Error Message");
+    }
+}
