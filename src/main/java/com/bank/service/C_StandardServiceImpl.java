@@ -70,7 +70,8 @@ public class C_StandardServiceImpl implements CompteService{
     public C_Standard updateCStandard(C_Standard c_standard){
         C_Standard existsStandard = c_standardRepo.findById(c_standard.getId()).orElse(null);
         existsStandard.setEnable(true);
-        return c_standardRepo.save(existsStandard);
+        c_standardRepo.save(existsStandard);
+        return existsStandard;
     }
 
 
