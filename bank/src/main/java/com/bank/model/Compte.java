@@ -1,5 +1,6 @@
 package com.bank.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -26,10 +27,12 @@ public abstract class Compte {
     private Long numC;
 
     @ManyToOne
+    @JsonIgnore
     private Agent agent;
 
 
     @OneToOne(fetch = FetchType.EAGER)
+    @JsonIgnore
     private Client client;
 
     public Compte(String type,  Client client, Agent agent, Long numC) {

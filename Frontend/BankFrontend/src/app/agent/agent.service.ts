@@ -21,8 +21,8 @@ public getStrandardCompte(): Observable<Compte[]>{
   return this.http.get<Compte[]>(`${this.apiServerUrl}/registration/getStandards`);
 }
 
-public enableStandardCompte(standard:Compte): Observable<Compte>{
-  return this.http.put<Compte>(`${this.apiServerUrl}/registration/updateCompteStandard`, standard);
+public enableStandardCompte(compte: Compte): Observable<Compte>{
+  return this.http.put<Compte>(`${this.apiServerUrl}/registration/updateCompteStandard`, compte);
 }
 
 public enableProfessionnelCompte(professionnel:Compte): Observable<Compte>{

@@ -54,15 +54,34 @@ export class AgentComponent implements OnInit {
   }
 
 public enableCompte(compte: Compte){
-  console.log(compte.type);
-this.agentService.enableStandardCompte(compte).subscribe(
-  (standard: Compte) => {
-    this.compte = standard;
-  },
+  if(compte.type == 'Standard') {
+  this.agentService.enableStandardCompte(compte).subscribe(
+    (standard: Compte) => {
+      this.compte = standard;
+      window.location.reload();
+    },
+
   (error: HttpErrorResponse) => {
     console.log(error.message);
   }
 )
+}
+else if(compte.type == 'Professionnel') {
+  this.agentService.enableProfessionnelCompte(compte).subscribe(
+    (professionnel: Compte) => {
+      this.compte = professionnel;
+      window.location.reload();
+    },
+
+  (error: HttpErrorResponse) => {
+    console.log(error.message);
+  }
+)
+}
+else {
+  console.log("error in type of account");
+  
+}
 }
 
 
