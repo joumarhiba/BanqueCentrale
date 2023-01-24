@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
+import { Client } from './client/dashboard/Client';
 
 @Component({
   selector: 'app-root',
@@ -8,11 +9,14 @@ import { BehaviorSubject } from 'rxjs';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  public credentials = {
-    id: 16,
+  public credentials : any = {
+    id: 11,
     email: 'Newclient@gmail.com',
     username: 'test2',
-    userRole:'CLIENT'
+    userRole:'CLIENT',
+    password:'12345678',
+    telephone:'0666666667',
+    enabled: false
   }
   private content = new BehaviorSubject<any>(this.credentials)
   public share = this.content.asObservable()

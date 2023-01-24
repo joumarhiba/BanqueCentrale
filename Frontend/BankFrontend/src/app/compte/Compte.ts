@@ -4,4 +4,5 @@ export interface Compte{
     type: string;
     amount: number;
     numC: number;
+    client:number;
 }

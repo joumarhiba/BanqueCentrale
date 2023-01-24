@@ -47,8 +47,8 @@ public class C_StandardController {
         return c_standardService.getAllStandards();
     }
 
-    @GetMapping("/registration/getStandardsByClient")
-    public List<C_Standard> getCStandardsByClient(@RequestBody Client client){
+    @GetMapping("/registration/getStandardsByClient/{client_id}")
+    public List<C_Standard> getCStandardsByClient(@PathVariable("client_id") Client client){
         return c_standardService.getCStandardsByClient(client);
     }
 

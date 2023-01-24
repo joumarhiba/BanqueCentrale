@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Compte } from 'src/app/compte/Compte';
+import { Client } from './Client';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +13,12 @@ export class DashboardService {
 
   constructor(private http: HttpClient) { }
 
-  public getStandardsByClient(): Observable<Compte[]>{
-    return this.http.get<Compte[]>(`${this.api}/registration/getStandardsByClient`);
+  public getStandardsByClient(client: Client){
+    return this.http.get<Compte[]>(`${this.api}/registration/getStandardsByClient/${client.id}`
+    // , {
+    //     responseType: 'text' as 'json',
+    //   }
+    );
 }
 
 }
