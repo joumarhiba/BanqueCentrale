@@ -1,6 +1,7 @@
 package com.bank.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -28,6 +29,7 @@ public abstract class Compte {
 
     @ManyToOne
     @JsonIgnore
+    @JsonProperty("agent")
     private Agent agent;
 
 

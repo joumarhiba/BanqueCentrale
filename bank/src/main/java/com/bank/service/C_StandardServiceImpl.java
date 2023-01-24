@@ -1,9 +1,6 @@
 package com.bank.service;
 
-import com.bank.model.Agent;
-import com.bank.model.C_Professionnel;
-import com.bank.model.C_Standard;
-import com.bank.model.Compte;
+import com.bank.model.*;
 import com.bank.repository.AgentRepo;
 import com.bank.repository.C_StandardRepo;
 import com.bank.repository.ClientRepo;
@@ -65,6 +62,10 @@ public class C_StandardServiceImpl implements CompteService{
 
     public C_Standard getCStandardById(Long id){
         return c_standardRepo.findById(id).orElse(null);
+    }
+
+    public List<C_Standard> getCStandardsByClient(Client client) {
+        return c_standardRepo.findByClient(client);
     }
 
     public C_Standard updateCStandard(C_Standard c_standard){

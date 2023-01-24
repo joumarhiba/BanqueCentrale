@@ -17,12 +17,14 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { CompteComponent } from './compte/compte.component';
 import { HttpClient } from '@angular/common/http';
+import { DashboardComponent } from './client/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AgentComponent,
-    CompteComponent
+    CompteComponent,
+    DashboardComponent
   ],
   imports: [
     MatTableModule,

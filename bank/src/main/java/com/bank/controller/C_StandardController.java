@@ -3,6 +3,7 @@ package com.bank.controller;
 import com.bank.model.C_Professionnel;
 import com.bank.model.C_Standard;
 import com.bank.model.Carte;
+import com.bank.model.Client;
 import com.bank.service.C_StandardServiceImpl;
 import com.bank.service.CarteService;
 import com.bank.service.helpers.CarteRequest;
@@ -45,6 +46,12 @@ public class C_StandardController {
     public List<C_Standard> getAllStandards(){
         return c_standardService.getAllStandards();
     }
+
+    @GetMapping("/registration/getStandardsByClient")
+    public List<C_Standard> getCStandardsByClient(@RequestBody Client client){
+        return c_standardService.getCStandardsByClient(client);
+    }
+
 
     @PutMapping("/registration/depotAmountStandard")
     public C_Standard depotAmountByAgent(@RequestBody C_Standard c_standard){
