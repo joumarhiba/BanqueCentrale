@@ -1,6 +1,8 @@
 package com.bank.controller;
 
 import com.bank.model.C_Professionnel;
+import com.bank.model.C_Standard;
+import com.bank.model.Client;
 import com.bank.service.C_ProfessionnelServiceImpl;
 import com.bank.service.C_StandardServiceImpl;
 import com.bank.service.helpers.CompteRequest;
@@ -26,6 +28,10 @@ public class C_ProfessionnelController {
         return c_professionnelService.getAllProfessionnels();
     }
 
+    @GetMapping("/registration/getProfessionnelsByClient/{client_id}")
+    public List<C_Professionnel> getCProfessionnelsByClient(@PathVariable("client_id") Client client){
+        return c_professionnelService.getCStandardsByClient(client);
+    }
 
 
     @PutMapping("/registration/depotAmountProfessionnel")

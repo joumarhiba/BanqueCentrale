@@ -21,4 +21,10 @@ export class DashboardService {
     );
 }
 
+
+public getProfessionnelsByClient(client: Client){
+  return this.http.get<Compte[]>(`${this.api}/registration/getCProfessionnelsByClient/${client.id}`
+  );
+}
+
 }

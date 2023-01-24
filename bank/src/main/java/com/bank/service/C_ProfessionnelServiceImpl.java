@@ -3,6 +3,7 @@ package com.bank.service;
 import com.bank.model.Agent;
 import com.bank.model.C_Professionnel;
 import com.bank.model.C_Standard;
+import com.bank.model.Client;
 import com.bank.repository.C_StandardRepo;
 import com.bank.repository.C_professionnelRepo;
 import com.bank.repository.ClientRepo;
@@ -27,6 +28,10 @@ public class C_ProfessionnelServiceImpl implements CompteService{
     }
 
    // private final C_Professionnel c_professionnel;
+
+    public List<C_Professionnel> getCStandardsByClient(Client client) {
+        return c_professionnelRepo.findByClient(client);
+    }
 
     public String addCompteByClient(C_Professionnel professionnel) throws Exception {
 

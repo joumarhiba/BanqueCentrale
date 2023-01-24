@@ -55,13 +55,10 @@ export class DashboardComponent implements OnInit {
     // console.log(this.credentials);
     // this.getStandardsByClient(JSON.stringify(this.text))
     this.getStandardsByClient()
-    console.log(this.activatedRoute.snapshot.paramMap.get('client_id'));
-
   }
 
 
   public getStandardsByClient() {
-
     this.dashboardService.getStandardsByClient(this.credentials).subscribe(
       (standards : Compte[]) => {
           this.standards = standards;
@@ -80,5 +77,22 @@ export class DashboardComponent implements OnInit {
   }
 
 
+  public getProfessionnelsByClient() {
+    this.dashboardService.getStandardsByClient(this.credentials).subscribe(
+      (standards : Compte[]) => {
+          this.standards = standards;
+        this.dataSource =new MatTableDataSource(this.standards)
+        console.log("the data  === "+this.standards);
+
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+      },
+      (error: HttpErrorResponse) => {
+        console.log(error);
+      }
+    )
+
+
+  }
 
 }
