@@ -14,6 +14,6 @@ import java.util.List;
 
 public interface CarteRepo extends JpaRepository<Carte, Long> {
 
-    List<C_Standard> findCarteByC_Standard();
+//    List<C_Standard> findCarteByC_Standard(C_Standard c_standard);
 
 }

@@ -29,4 +29,8 @@ public enableProfessionnelCompte(professionnel:Compte): Observable<Compte>{
   return this.http.put<Compte>(`${this.apiServerUrl}/registration/updateCompteProfessionnel`, professionnel);
 }
 
+public depotAmountStandard(compte: Compte): Observable<Compte> {
+  return this.http.put<Compte>(`${this.apiServerUrl}/registration/depotAmountStandard`, compte)
+}
+
 }

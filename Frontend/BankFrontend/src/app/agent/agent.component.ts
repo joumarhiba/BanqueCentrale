@@ -6,6 +6,8 @@ import { AgentService } from './agent.service';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
+import { DialogProfessionnelComponent } from '../client/dialog-professionnel/dialog-professionnel.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-agent',
@@ -13,7 +15,7 @@ import {MatTableDataSource} from '@angular/material/table';
   styleUrls: ['./agent.component.css']
 })
 export class AgentComponent implements OnInit {
-  displayedColumns: string[] = ['numC', 'type', 'amount', 'enable'];
+  displayedColumns: string[] = ['numC', 'type', 'amount', 'enable', 'option'];
   dataSource!: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -21,8 +23,9 @@ export class AgentComponent implements OnInit {
 
   public comptes: Compte[] = [];
   public compte! : Compte;
+  public compteDetails! : Compte;
 
-  constructor(private agentService: AgentService) { }
+  constructor(private agentService: AgentService , public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.getAllProfessionnelsComptes()
@@ -80,7 +83,7 @@ else if(compte.type == 'Professionnel') {
 }
 else {
   console.log("error in type of account");
-  
+
 }
 }
 
@@ -94,4 +97,15 @@ else {
     }
   }
 
+
+  compteInfos(compte: Compte){
+    this.compteDetails = compte
+    this.dialog.open(DialogProfessionnelComponent, {
+      width:'30%',
+    });
+    console.log(this.compteDetails.id);
+
+  }
+
+ 
 }

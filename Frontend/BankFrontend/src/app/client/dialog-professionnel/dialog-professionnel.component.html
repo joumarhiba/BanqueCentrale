@@ -1,1 +1,13 @@
-<p>dialog-professionnel works!</p>
+
+<h1 mat-dialog-title>Add Compte Standard</h1>
+<div style="width: 100%;" mat-dialog-content>
+   <form >
+    <mat-form-field appearance="fill">
+        <mat-label>Montant</mat-label>
+        <input type="text" />
+      </mat-form-field>
+   </form>
+</div>
+<div mat-dialog-actions [align]="'end'">
+    <button class="p-2 bg-black text-white ml-32" (click)="depot()">Submit</button>
+</div>

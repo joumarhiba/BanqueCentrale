@@ -82,8 +82,8 @@ public class CarteService {
 
 
 
-    public List<C_Standard> findCarteByCStandard(){
-        return carteRepo.findCarteByC_Standard();
-    }
+//    public List<C_Standard> findCarteByCStandard(){
+//        carteRepo.
+//    }
 
 }

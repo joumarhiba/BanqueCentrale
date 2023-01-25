@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Compte } from 'src/app/compte/Compte';
 import { Client } from './Client';
 
@@ -11,6 +11,15 @@ import { Client } from './Client';
 export class DashboardService {
 
   private api = 'http://localhost:8080';
+  public compteDetails : Compte = {
+    id:0,
+    enable:false,
+    amount:0,
+    type: '',
+    numC:0,
+    agent : {},
+    client : {}
+  };
 
   constructor(private http: HttpClient) { }
 
@@ -27,5 +36,17 @@ public getProfessionnelsByClient(client: Client){
   );
 }
 
+public compteInfos(compte: Compte) : void{
+  this.compteDetails = compte;
+  console.log("details : "+this.compteDetails.id);
+
+}
+
+private content = new BehaviorSubject<any>(this.compteDetails)
+public share = this.content.asObservable()
+
+updateData(text: any){
+  this.content.next(text)
+}
 
 }

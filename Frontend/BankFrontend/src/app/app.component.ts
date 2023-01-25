@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
-import { Client } from './client/dashboard/Client';
 
 @Component({
   selector: 'app-root',
