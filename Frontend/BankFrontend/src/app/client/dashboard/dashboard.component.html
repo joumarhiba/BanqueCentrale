@@ -1,6 +1,41 @@
-<div class="main-container">
+<div class="main-container ">
   <button type="button" class="p-2 bg-black text-white mb-4" (click)="openDialogStandard()">Ajouter un Compte Standard</button>
-<div class="mat-elevation-z8">
+
+  <div class="mat-elevation-z8 mb-8">
+    <table mat-table [dataSource]="dataPro" matSort>
+
+      <ng-container matColumnDef="numC">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Numéro </th>
+        <td mat-cell *matCellDef="let row"> {{row.numC}}  </td>
+      </ng-container>
+
+      <ng-container matColumnDef="type">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Type </th>
+        <td mat-cell *matCellDef="let row"> {{row.type}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="amount">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Amount </th>
+        <td mat-cell *matCellDef="let row"> {{row.amount}} MAD</td>
+      </ng-container>
+
+      <ng-container matColumnDef="enable">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+        <td mat-cell *matCellDef="let row">{{row.enable}}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    </table>
+
+  </div>
+
+
+
+
+
+<div class="mat-elevation-z8 my-8">
     <table mat-table [dataSource]="dataSource" matSort>
 
       <ng-container matColumnDef="numC">
@@ -32,37 +67,4 @@
   </div>
 
 
-
-
-
-  <button type="button" class="p-2 bg-black text-white my-8" (click)="openDialogProfessionnel()">Ajouter un Compte Professionnel</button>
-  <div class="mat-elevation-z8">
-  <table mat-table [dataSource]="dataPro" matSort>
-
-    <ng-container matColumnDef="numC">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Numéro </th>
-      <td mat-cell *matCellDef="let row"> {{row.numC}}  </td>
-    </ng-container>
-
-    <ng-container matColumnDef="type">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Type </th>
-      <td mat-cell *matCellDef="let row"> {{row.type}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="amount">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Amount </th>
-      <td mat-cell *matCellDef="let row"> {{row.amount}} MAD</td>
-    </ng-container>
-
-    <ng-container matColumnDef="enable">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
-      <td mat-cell *matCellDef="let row">{{row.enable}}</td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-
-  </table>
-
-</div>
 </div>

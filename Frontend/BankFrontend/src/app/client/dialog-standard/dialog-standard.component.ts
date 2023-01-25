@@ -40,12 +40,27 @@ export class DialogStandardComponent implements OnInit {
 
 
   addCompte() {
-    console.log(this.compteForm.value);
-    this.dialogService.addStandardCompte(this.compteForm.value)
-    .subscribe(
-      data => console.log('Success!', data),
-      error => console.log('Error!', error)
-    );
+    console.log('type '+this.compteForm.value.type);
+    if( this.compteForm.value.type == 'Standard') {
+      this.dialogService.addStandardCompte(this.compteForm.value)
+      .subscribe(
+        data => {
+          console.log('Success for standard!', data);
+          window.location.reload()
+    },
+        error => console.log('Error!', error)
+      );
+    }
+    else if( this.compteForm.value.type == 'Professionnel') {
+      this.dialogService.addProfessionnelCompte(this.compteForm.value)
+      .subscribe(
+        data => {
+          console.log('Success for professionnel!', data);
+          window.location.reload()
+      },
+        error => console.log('Error!', error)
+      );
+    }
 }
 
 }
