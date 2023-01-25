@@ -1,4 +1,3 @@
-import { JsonPipe } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
@@ -32,6 +31,15 @@ export class DashboardComponent implements OnInit {
   // }
   public standards : Compte[] = [];
   public professionnels: Compte[] = []
+  public compteDetails : Compte = {
+    id:0,
+    enable:false,
+    amount:0,
+    type: '',
+    numC:0,
+    agent : {},
+    client : {}
+  };
   public credentials : Client = {
     id: 16,
     // email: 'Newclient@gmail.com',
@@ -43,7 +51,7 @@ export class DashboardComponent implements OnInit {
   }
 
 
-  displayedColumns: string[] = ['numC', 'type', 'amount', 'enable'];
+  displayedColumns: string[] = ['numC', 'type', 'amount', 'enable', 'option'];
   dataSource!: MatTableDataSource<any>;
   dataPro!: MatTableDataSource<any>;
 
@@ -96,9 +104,12 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  openDialogProfessionnel() {
-    this.dialog.open(DialogProfessionnelComponent, {
-      width:'30%'
-    });
+
+  public compteInfos(compte: Compte) : void{
+    this.compteDetails = compte;
+    console.log("details : "+this.compteDetails.id);
+
   }
+
+
 }

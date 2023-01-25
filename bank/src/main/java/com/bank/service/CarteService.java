@@ -15,6 +15,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @Slf4j
 @RequiredArgsConstructor
@@ -76,6 +78,12 @@ public class CarteService {
         else {
             return "vous ne pouvez pas faire l'achat car vous avez depassé la plateforme quotidienne associé à une carte de type "+carte.getCarte_type();
         }
+    }
+
+
+
+    public List<C_Standard> findCarteByCStandard(){
+        return carteRepo.findCarteByC_Standard();
     }
 
 }
