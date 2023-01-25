@@ -28,6 +28,7 @@ public class C_ProfessionnelController {
         return c_professionnelService.getAllProfessionnels();
     }
 
+
     @GetMapping("/registration/getProfessionnelsByClient/{client_id}")
     public List<C_Professionnel> getCProfessionnelsByClient(@PathVariable("client_id") Client client){
         return c_professionnelService.getCStandardsByClient(client);
