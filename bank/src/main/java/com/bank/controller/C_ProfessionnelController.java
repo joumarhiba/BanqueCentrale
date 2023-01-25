@@ -19,7 +19,7 @@ public class C_ProfessionnelController {
     private final C_ProfessionnelServiceImpl c_professionnelService;
 
     @PostMapping("/registration/addCompteProfessionnel")
-    public String addCompteProfessionnel(@RequestBody CompteRequest request) throws Exception {
+    public C_Professionnel addCompteProfessionnel(@RequestBody CompteRequest request) throws Exception {
         return c_professionnelService.saveAccount(request);
     }
 

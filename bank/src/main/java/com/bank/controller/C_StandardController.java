@@ -22,8 +22,8 @@ public class C_StandardController {
     private final CarteService carteService;
 
     @PostMapping("/registration/addCompteStandard")
-    public String addCompteStandard(@RequestBody CompteRequest request) throws Exception {
-        String compte = c_standardService.saveAccount(request);
+    public C_Standard addCompteStandard(@RequestBody CompteRequest request) throws Exception {
+       C_Standard compte = c_standardService.saveAccount(request);
         return compte ;
     }
 

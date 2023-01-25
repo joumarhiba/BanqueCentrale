@@ -12,6 +12,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Random;
+import java.util.UUID;
 
 @Service
 @Slf4j
@@ -26,14 +28,14 @@ public class C_StandardServiceImpl implements CompteService{
         return c_standardRepo.findAll();
     }
 
-    public String addCompteByClient(C_Standard standard) throws Exception {
-
-        c_standardRepo.save(standard);
-        log.info("an account is adding by {} ", standard.getClient().getUsername());
-        return "the account is added successfully";
+    public C_Standard addCompteByClient(C_Standard standard) throws Exception {
+        Random random = new Random();
+        long numC = 100000000L + (long)(random.nextDouble()*900000000L);
+        standard.setNumC(numC);
+        return c_standardRepo.save(standard);
     }
 
-    public String saveAccount(CompteRequest request) throws Exception {
+    public C_Standard saveAccount(CompteRequest request) throws Exception {
       /*  boolean ClientExists = c_standardRepo.findClientById(request.getClient_id().getId()).isPresent();
         if(!ClientExists){
             throw new Exception("this id client "+request.getClient_id().getId()+" not found !!!!!");
@@ -41,16 +43,16 @@ public class C_StandardServiceImpl implements CompteService{
        */
         if(request.getType().equalsIgnoreCase("Standard")){
             try {
-            addCompteByClient(
+            var compte = addCompteByClient(
                     new C_Standard(request.getType(), request.getClient_id(), request.getAgent_id(), request.getNumC())
             );
                // clientRepo.updateCompte(request.getClient_id().getId(),new C_Standard(request.getId(), request.getType(), request.getAmount(), request.getClient_id(), request.getAgent_id()));
-            return "it has saved successfully & agent id = "+request.getClient_id();
+            return compte;
             }catch (Exception ex){
                 throw new Exception(ex.getMessage());
             }
         } else {
-            return "check the type of the account must be Standard";
+            return null;
         }
     }
 

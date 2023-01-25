@@ -1,11 +1,14 @@
 import { JsonPipe } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
 import { Compte } from 'src/app/compte/Compte';
+import { DialogProfessionnelComponent } from '../dialog-professionnel/dialog-professionnel.component';
+import { DialogStandardComponent } from '../dialog-standard/dialog-standard.component';
 import { Client } from './Client';
 import { DashboardService } from './dashboard.service';
 
@@ -48,7 +51,7 @@ export class DashboardComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
 
 
-  constructor(private dashboardService: DashboardService) { }
+  constructor(private dashboardService: DashboardService, public dialog: MatDialog) { }
 
     ngOnInit(): void {
     this.getStandardsByClient()
@@ -61,8 +64,6 @@ export class DashboardComponent implements OnInit {
       (standards : Compte[]) => {
           this.standards = standards;
         this.dataSource =new MatTableDataSource(this.standards)
-        console.log("the data  === "+this.standards);
-
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
 
@@ -77,10 +78,8 @@ export class DashboardComponent implements OnInit {
   public getProfessionnelsByClient() {
     this.dashboardService.getProfessionnelsByClient(this.credentials).subscribe(
       (professionnels : Compte[]) => {
-        console.log(professionnels);
           this.professionnels = professionnels;
         this.dataPro =new MatTableDataSource(this.professionnels)
-        console.log("the pro  === "+this.professionnels);
         // this.dataPro.paginator = this.paginatorPro;
         // this.dataPro.sort = this.sortPro;
       },
@@ -88,8 +87,18 @@ export class DashboardComponent implements OnInit {
         console.log(error);
       }
     )
-
-
   }
 
+
+  openDialogStandard() {
+    this.dialog.open(DialogStandardComponent, {
+      width:'30%',
+    });
+  }
+
+  openDialogProfessionnel() {
+    this.dialog.open(DialogProfessionnelComponent, {
+      width:'30%'
+    });
+  }
 }

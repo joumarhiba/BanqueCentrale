@@ -1,0 +1,17 @@
+<h1 mat-dialog-title>Add Compte Standard</h1>
+<div style="width: 100%;" mat-dialog-content>
+   <form [formGroup]="compteForm">
+    <mat-form-field appearance="fill">
+        <mat-label>Type du Compte</mat-label>
+        <input type="hidden" formControlName="client_id" />
+        <input type="hidden" formControlName="agent_id" />
+        <mat-select formControlName="type" placeholder="Compte">
+          <mat-option value="Standard">Standard</mat-option>
+          <mat-option value="Professionnel">Professionnel</mat-option>
+        </mat-select>
+      </mat-form-field>
+   </form>
+</div>
+<div mat-dialog-actions [align]="'end'">
+    <button class="p-2 bg-black text-white ml-32" (click)="addCompte()">Submit</button>
+</div>

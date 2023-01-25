@@ -1,4 +1,5 @@
 <div class="main-container">
+  <button type="button" class="p-2 bg-black text-white mb-4" (click)="openDialogStandard()">Ajouter un Compte Standard</button>
 <div class="mat-elevation-z8">
     <table mat-table [dataSource]="dataSource" matSort>
 
@@ -32,7 +33,10 @@
 
 
 
-<div class="mat-elevation-z8 my-8">
+
+
+  <button type="button" class="p-2 bg-black text-white my-8" (click)="openDialogProfessionnel()">Ajouter un Compte Professionnel</button>
+  <div class="mat-elevation-z8">
   <table mat-table [dataSource]="dataPro" matSort>
 
     <ng-container matColumnDef="numC">

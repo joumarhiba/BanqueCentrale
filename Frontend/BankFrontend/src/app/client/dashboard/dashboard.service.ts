@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { Compte } from 'src/app/compte/Compte';
 import { Client } from './Client';
@@ -21,10 +22,10 @@ export class DashboardService {
     );
 }
 
-
 public getProfessionnelsByClient(client: Client){
   return this.http.get<Compte[]>(`${this.api}/registration/getProfessionnelsByClient/${client.id}`
   );
 }
+
 
 }

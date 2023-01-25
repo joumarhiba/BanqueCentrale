@@ -18,15 +18,24 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import { CompteComponent } from './compte/compte.component';
 import { HttpClient } from '@angular/common/http';
 import { DashboardComponent } from './client/dashboard/dashboard.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import { DialogStandardComponent } from './client/dialog-standard/dialog-standard.component';
+import {MatSelectModule} from '@angular/material/select';
+import { DialogProfessionnelComponent } from './client/dialog-professionnel/dialog-professionnel.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     AgentComponent,
     CompteComponent,
-    DashboardComponent
+    DashboardComponent,
+    DialogStandardComponent,
+    DialogProfessionnelComponent,
   ],
   imports: [
+    MatSelectModule,
+    MatDialogModule,
     MatTableModule,
     MatInputModule,
     MatSortModule,
@@ -41,6 +50,7 @@ import { DashboardComponent } from './client/dashboard/dashboard.component';
     RouterModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    ReactiveFormsModule,FormsModule
   ],
   exports: [RouterModule,MatInputModule
   ],
