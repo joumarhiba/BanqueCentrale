@@ -17,12 +17,17 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { CompteComponent } from './compte/compte.component';
 import { HttpClient } from '@angular/common/http';
+import { LoginComponent } from './pages/login/login.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SignupComponent } from './pages/signup/signup.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AgentComponent,
-    CompteComponent
+    CompteComponent,
+    LoginComponent,
+    SignupComponent
   ],
   imports: [
     MatTableModule,
@@ -39,6 +44,8 @@ import { HttpClient } from '@angular/common/http';
     RouterModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [RouterModule,MatInputModule
   ],
