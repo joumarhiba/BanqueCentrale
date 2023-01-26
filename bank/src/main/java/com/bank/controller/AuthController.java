@@ -51,7 +51,7 @@ public class AuthController {
                 String jwt = jwtHandler.generateToken(user);
                 response = new Response(
                         HttpStatus.OK,
-                        "Successfully Logged in",
+                        "Successfully Logged  in",
                         "data",
                         jwt
                 );
