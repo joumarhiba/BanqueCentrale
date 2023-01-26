@@ -27,8 +27,7 @@ public class Client extends User {
 
     @OneToOne(cascade = CascadeType.PERSIST)
     private Compte compte;
-    private Boolean locked = false;
-    private Boolean enabled = false;
+
 
     public Client(String username, String email, String password, UserRole userRole, String CIN,byte[] image, String telephone) {
         super(username, email, password, userRole);
