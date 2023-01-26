@@ -12,5 +12,5 @@ import lombok.*;
 public class AuthenticationRequest {
     private final String email;
     private final String password;
-    private final String userRole;
+//    private final String userRole;
 }

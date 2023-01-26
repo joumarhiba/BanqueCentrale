@@ -26,7 +26,7 @@ import java.util.*;
 @Slf4j
 @RequiredArgsConstructor
 @Transactional
-public class ClientServiceImpl implements ClientService, UserDetailsService {
+public class ClientServiceImpl implements ClientService {
 
     public static String uploadDir = System.getProperty("client.dir")+"src/main/resources/static";
 
@@ -54,12 +54,6 @@ public class ClientServiceImpl implements ClientService, UserDetailsService {
         return clientRepo.findAll();
     }
 
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-      //  Optional<Client> client = clientRepo.findByUsername(username);
-        return clientRepo.findByUsername(username)
-                .orElseThrow(() -> new UsernameNotFoundException("Client not found......"));
-    }
 
     public String signUpClient(Client client){
         System.out.println( "inside client registration signup");
@@ -86,4 +80,5 @@ public class ClientServiceImpl implements ClientService, UserDetailsService {
         return clientRepo.findByEmail(email)
                 .orElseThrow(() -> new UsernameNotFoundException("Client not found......"));
     }
+
 }

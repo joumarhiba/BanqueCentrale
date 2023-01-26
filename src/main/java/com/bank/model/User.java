@@ -2,13 +2,17 @@ package com.bank.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
+
 
 @Data
 @NoArgsConstructor
@@ -32,11 +36,17 @@ public abstract class User implements UserDetails, Serializable {
     private Boolean locked = false;
     private Boolean enabled = true;
 
+    @Transient
+    private List<GrantedAuthority> grantedAuthorityList;
+
+
     public User(String username, String email, String password, UserRole userRole) {
         this.username = username;
         this.email = email;
         this.password = password;
-       this.userRole = userRole;
+        this.userRole = userRole;
+        this.grantedAuthorityList.add(new SimpleGrantedAuthority(userRole.toString()));
+
     }
 
     @Override
@@ -65,6 +75,5 @@ public abstract class User implements UserDetails, Serializable {
         return enabled;
     }
 
-
-
 }
+

@@ -1,4 +1,4 @@
-package com.mehdilagdimi.myrh.model;
+package com.bank.model;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
