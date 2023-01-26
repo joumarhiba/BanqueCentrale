@@ -1,0 +1,14 @@
+<ng-container *ngIf="!hasRoute('/auth') && !hasRoute('/signup')">
+  <mat-toolbar class="mb-12">
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+     <mat-icon>account_balance</mat-icon>
+   </button>
+   <span>Banque Centrale</span>
+   <span class="example-spacer"></span>
+   <a *ngIf="!isAuthenticated" mat-stroked-button (click)="doLogin()" class="mr-8" >Login</a>
+   <a *ngIf="isAuthenticated" mat-stroked-button (click)="doLogout()" class="mr-8" >Logout</a>
+  </mat-toolbar>
+</ng-container>
+
+<router-outlet></router-outlet>
+<!-- <h1 class="container bg-gray-700 p-8 font-bold">Hello word, it's work</h1> -->
