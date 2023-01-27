@@ -4,7 +4,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { BehaviorSubject } from 'rxjs';
 import { Compte } from 'src/app/compte/Compte';
 import { DialogStandardComponent } from '../dialog-standard/dialog-standard.component';
 import { Client } from './Client';

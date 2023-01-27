@@ -1,16 +1,1 @@
-<h1 mat-dialog-title>Ajouter un montant<h1>
-<form [formGroup]="addAmountForm">
-    <mat-form-field appearance="fill">
-        <mat-label>Montant</mat-label>
-        <input type="email" matInput [formControl]="amountFormControl" placeholder="Ex. 2000">
-        <mat-error *ngIf="amountFormControl.hasError('amount') && !amountFormControl.hasError('required')">
-        Please enter a valid Amount
-        </mat-error>
-        <mat-error *ngIf="amountFormControl.hasError('required')">
-        Amount is <strong>required</strong>
-        </mat-error>
-    </mat-form-field>
-</form>
-    <div mat-dialog-actions [align]="'end'">
-        <button class="p-2 bg-black text-white ml-32">Ajouter</button>
-    </div>
+

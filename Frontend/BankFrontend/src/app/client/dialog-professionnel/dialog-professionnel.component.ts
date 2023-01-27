@@ -1,7 +1,8 @@
+import { AgentComponent } from './../../agent/agent.component';
+import { AgentService } from './../../agent/agent.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { AgentService } from 'src/app/agent/agent.service';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Compte } from 'src/app/compte/Compte';
 import { DashboardService } from '../dashboard/dashboard.service';
 
@@ -13,16 +14,11 @@ import { DashboardService } from '../dashboard/dashboard.service';
 export class DialogProfessionnelComponent implements OnInit {
 
   addAmountForm !: FormGroup
-  amountFormControl = new FormControl('', [Validators.required, Validators.email]);
 
+  constructor(private agentComponent : AgentComponent, private formBuilder :FormBuilder, private agentService: AgentService,private dashboardService : DashboardService){}
 
-  constructor(private agentService: AgentService,private dashboardService : DashboardService){}
-
-  public compteDetails : Compte = {
+  public compteDetails : Object = {
     id:22,
-    amount: 955,
-    enable: false,
-    numC:11111111,
     type: 'Standard',
     agent: {},
     client: {}
@@ -37,7 +33,10 @@ export class DialogProfessionnelComponent implements OnInit {
   //   client : {}
   //   }
   ngOnInit(): void {
-    this.depot()
+    this.addAmountForm = this.formBuilder.group({
+      amount : ['', Validators.required],
+      compte : [this.compteDetails, Validators.required]
+    })
       // this.dashboardService.share.subscribe(x => {this.text = x; console.log("x :: "+x.type);
       // console.log("some data == "+this.data.id);
 
@@ -47,19 +46,7 @@ export class DialogProfessionnelComponent implements OnInit {
 
 
 
-  depot() {
-    console.log(this.compteDetails.amount);
-    this.agentService.depotAmountStandard(this.compteDetails).subscribe(
-      (response : Compte) => {
-          console.log(response.amount);
-    },
-      (error: HttpErrorResponse) => {
-        console.log(error);
-      }
-    )
-    console.log(this.amount);
 
-  }
 
 
   public get amount() : number{

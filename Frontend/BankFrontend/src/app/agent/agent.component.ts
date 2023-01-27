@@ -8,7 +8,7 @@ import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import { DialogProfessionnelComponent } from '../client/dialog-professionnel/dialog-professionnel.component';
 import { MatDialog } from '@angular/material/dialog';
-import { DialogProfessionnelService } from '../client/dialog-professionnel/dialog-professionnel.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-agent',
@@ -17,7 +17,7 @@ import { DialogProfessionnelService } from '../client/dialog-professionnel/dialo
 })
 export class AgentComponent implements OnInit {
 
-
+  addAmountForm !: FormGroup
 
   displayedColumns: string[] = ['numC', 'type', 'amount', 'enable', 'option'];
   dataSource!: MatTableDataSource<any>;
@@ -27,11 +27,21 @@ export class AgentComponent implements OnInit {
 
   public comptes: Compte[] = [];
   public compte! : Compte;
-  public compteDetails! : Compte;
+  public compteDetails : any ={
+    id:22,
+    type: 'Standard',
+    amount: 0,
+    agent: {},
+    client: {}
+  };
 
-  constructor(private agentService: AgentService ,private dialogS: DialogProfessionnelService, public dialog: MatDialog) { }
+  constructor(private agentService: AgentService,private formBuilder :FormBuilder, public dialog: MatDialog) { }
 
   ngOnInit(): void {
+    this.addAmountForm = this.formBuilder.group({
+      amount : ['', Validators.required],
+      compte : ['', Validators.required]
+    })
     this.getAllProfessionnelsComptes()
   }
 
@@ -107,8 +117,41 @@ else {
     this.dialog.open(DialogProfessionnelComponent, {
       width:'30%',
     });
-    console.log(this.compteDetails.id);
-
+    console.log("compte details "+this.compteDetails.id+" compte amount "+this.compteDetails.amount);
   }
+
+
+
+  depot() {
+    // console.log('static : '+this.compteDetails.amount);
+    // console.log('amount : '+this.addAmountForm.value);
+    console.log(this.addAmountForm.value);
+
+    this.agentService.depotAmountStandard(this.addAmountForm.value).subscribe(
+      (response : Compte) => {
+          console.log(response.amount);
+    },
+      (error: HttpErrorResponse) => {
+        console.log(error);
+      }
+    )
+  }
+
+
+  public onOpenModal(mode? : string) : void{
+    const container = document.getElementById('main-container');
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.style.display = 'none';
+    button.setAttribute('data-toggle', 'modal');
+
+    if(mode === "loginCompany") {
+      document.getElementById('close-modal')?.click();
+      button.setAttribute('data-target', '#LoginCompanyModal')
+    }
+    container?.appendChild(button);
+    button.click();
+  }
+
 
 }

@@ -9,6 +9,8 @@ export class DialogProfessionnelService {
 
   constructor() { }
 
+  // public addStandardCompte(compte: Compte){
+  //   return this.http.post<Compte>(`${this.api}/registration/addCompteStandard`, compte);
+  // }
 
-  
 }
