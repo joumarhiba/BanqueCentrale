@@ -36,8 +36,9 @@ public class AuthController {
             @PathVariable(required = false) Optional<String> role,
             @RequestBody AuthenticationRequest authenticationRequest
     ) {
-
+        System.out.println(" inside auth " + role.orElse("CLIENT"));
         Response response = null;
+
         try {
             authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
