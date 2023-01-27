@@ -69,7 +69,8 @@ export class LoginComponent implements OnInit {
           console.log(" errer ", err)
           this.authService.setAuthState(false);
           this.isAuthenticated = false;
-          window.location.reload();
+          alert("Failed to loginn, credentials might be not correct, try again")
+          // window.location.reload();
         },
         complete : ()=> {
           console.log(" inside complete ")
