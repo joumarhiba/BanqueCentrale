@@ -8,6 +8,8 @@ import { Compte } from '../compte/Compte';
 })
 export class AgentService {
 
+  public amount: number = 200
+
   private apiServerUrl = 'http://localhost:8080';
 
   constructor(private http: HttpClient) { }

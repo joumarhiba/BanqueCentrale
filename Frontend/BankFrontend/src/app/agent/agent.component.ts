@@ -8,6 +8,7 @@ import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import { DialogProfessionnelComponent } from '../client/dialog-professionnel/dialog-professionnel.component';
 import { MatDialog } from '@angular/material/dialog';
+import { DialogProfessionnelService } from '../client/dialog-professionnel/dialog-professionnel.service';
 
 @Component({
   selector: 'app-agent',
@@ -15,6 +16,9 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./agent.component.css']
 })
 export class AgentComponent implements OnInit {
+
+
+
   displayedColumns: string[] = ['numC', 'type', 'amount', 'enable', 'option'];
   dataSource!: MatTableDataSource<any>;
 
@@ -25,7 +29,7 @@ export class AgentComponent implements OnInit {
   public compte! : Compte;
   public compteDetails! : Compte;
 
-  constructor(private agentService: AgentService , public dialog: MatDialog) { }
+  constructor(private agentService: AgentService ,private dialogS: DialogProfessionnelService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.getAllProfessionnelsComptes()
@@ -107,5 +111,4 @@ else {
 
   }
 
- 
 }
