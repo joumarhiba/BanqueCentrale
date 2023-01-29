@@ -118,6 +118,8 @@ else {
   depot() {
     console.log(this.addAmountForm.value);
     this.compteDetails.amount = this.addAmountForm.value.amount
+    this.addAmountForm.value.compte = this.compteDetails
+
     this.agentService.depotAmountStandard(this.compteDetails).subscribe(
       (response : Compte) => {
           console.log(response.amount);
@@ -126,6 +128,7 @@ else {
         console.log(error);
       }
     )
+    window.location.reload()
   }
 
 
