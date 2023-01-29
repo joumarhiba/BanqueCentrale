@@ -36,9 +36,11 @@ public class AgentServiceImpl implements AgentService {
     }
 
 
+
     public User loadUserByEmail(String email) throws UsernameNotFoundException {
 //        Optional<Agent> agent = agentRepo.findByUsername(username);
         return agentRepo.findByEmail(email).orElseThrow(() -> new UsernameNotFoundException("Agent not found......"));
+
     }
 
     @Override
@@ -62,6 +64,4 @@ public class AgentServiceImpl implements AgentService {
         confirmationTokenService.saveConfirmationToken(confirmationToken);
         return "the token is : "+token;
     }
-
-
 }

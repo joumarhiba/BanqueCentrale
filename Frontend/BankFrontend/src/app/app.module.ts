@@ -21,15 +21,27 @@ import { LoginComponent } from './pages/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SignupComponent } from './pages/signup/signup.component';
 
+import { DashboardComponent } from './client/dashboard/dashboard.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import { DialogStandardComponent } from './client/dialog-standard/dialog-standard.component';
+import {MatSelectModule} from '@angular/material/select';
+import { DialogProfessionnelComponent } from './client/dialog-professionnel/dialog-professionnel.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
     AgentComponent,
     CompteComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    DashboardComponent,
+    DialogStandardComponent,
+    DialogProfessionnelComponent,
   ],
   imports: [
+    MatSelectModule,
+    MatDialogModule,
     MatTableModule,
     MatInputModule,
     MatSortModule,

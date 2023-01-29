@@ -1,5 +1,8 @@
 package com.bank.model;
 
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -26,7 +29,12 @@ public class Client extends User {
     private String telephone;
 
     @OneToOne(cascade = CascadeType.PERSIST)
+    @JsonIgnore
+    @JsonProperty("compte")
     private Compte compte;
+
+    private Boolean locked = false;
+    private Boolean enabled = false;
 
 
     public Client(String username, String email, String password, UserRole userRole, String CIN,byte[] image, String telephone) {

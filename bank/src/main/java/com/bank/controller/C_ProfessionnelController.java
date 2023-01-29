@@ -1,6 +1,8 @@
 package com.bank.controller;
 
 import com.bank.model.C_Professionnel;
+
+import com.bank.model.Client;
 import com.bank.service.C_ProfessionnelServiceImpl;
 import com.bank.service.C_StandardServiceImpl;
 import com.bank.service.helpers.CompteRequest;
@@ -17,7 +19,8 @@ public class C_ProfessionnelController {
     private final C_ProfessionnelServiceImpl c_professionnelService;
 
     @PostMapping("/registration/addCompteProfessionnel")
-    public String addCompteProfessionnel(@RequestBody CompteRequest request) throws Exception {
+
+    public C_Professionnel addCompteProfessionnel(@RequestBody CompteRequest request) throws Exception {
         return c_professionnelService.saveAccount(request);
     }
 
@@ -26,6 +29,11 @@ public class C_ProfessionnelController {
         return c_professionnelService.getAllProfessionnels();
     }
 
+
+    @GetMapping("/registration/getProfessionnelsByClient/{client_id}")
+    public List<C_Professionnel> getCProfessionnelsByClient(@PathVariable("client_id") Client client){
+        return c_professionnelService.getCStandardsByClient(client);
+    }
 
 
     @PutMapping("/registration/depotAmountProfessionnel")
@@ -43,3 +51,4 @@ public class C_ProfessionnelController {
         return c_professionnelService.retraitByClient(c_professionnel);
     }
 }
+

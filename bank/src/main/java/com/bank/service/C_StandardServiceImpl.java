@@ -4,6 +4,7 @@ import com.bank.model.Agent;
 import com.bank.model.C_Professionnel;
 import com.bank.model.C_Standard;
 import com.bank.model.Compte;
+import com.bank.model.*;
 import com.bank.repository.AgentRepo;
 import com.bank.repository.C_StandardRepo;
 import com.bank.repository.ClientRepo;
@@ -15,6 +16,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
+import java.util.Random;
+import java.util.UUID;
 
 @Service
 @Slf4j
@@ -29,14 +33,15 @@ public class C_StandardServiceImpl implements CompteService{
         return c_standardRepo.findAll();
     }
 
-    public String addCompteByClient(C_Standard standard) throws Exception {
 
-        c_standardRepo.save(standard);
-        log.info("an account is adding by {} ", standard.getClient().getUsername());
-        return "the account is added successfully";
+    public C_Standard addCompteByClient(C_Standard standard) throws Exception {
+        Random random = new Random();
+        long numC = 100000000L + (long)(random.nextDouble()*900000000L);
+        standard.setNumC(numC);
+        return c_standardRepo.save(standard);
     }
 
-    public String saveAccount(CompteRequest request) throws Exception {
+    public C_Standard saveAccount(CompteRequest request) throws Exception {
       /*  boolean ClientExists = c_standardRepo.findClientById(request.getClient_id().getId()).isPresent();
         if(!ClientExists){
             throw new Exception("this id client "+request.getClient_id().getId()+" not found !!!!!");
@@ -44,16 +49,16 @@ public class C_StandardServiceImpl implements CompteService{
        */
         if(request.getType().equalsIgnoreCase("Standard")){
             try {
-            addCompteByClient(
+            var compte = addCompteByClient(
                     new C_Standard(request.getType(), request.getClient_id(), request.getAgent_id(), request.getNumC())
             );
                // clientRepo.updateCompte(request.getClient_id().getId(),new C_Standard(request.getId(), request.getType(), request.getAmount(), request.getClient_id(), request.getAgent_id()));
-            return "it has saved successfully & agent id = "+request.getClient_id();
+            return compte;
             }catch (Exception ex){
                 throw new Exception(ex.getMessage());
             }
         } else {
-            return "check the type of the account must be Standard";
+            return null;
         }
     }
 
@@ -65,6 +70,11 @@ public class C_StandardServiceImpl implements CompteService{
 
     public C_Standard getCStandardById(Long id){
         return c_standardRepo.findById(id).orElse(null);
+    }
+
+
+    public List<C_Standard> getCStandardsByClient(Client client) {
+        return c_standardRepo.findByClient(client);
     }
 
     public C_Standard updateCStandard(C_Standard c_standard){

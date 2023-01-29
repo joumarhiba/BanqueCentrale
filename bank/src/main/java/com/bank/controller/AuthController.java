@@ -1,23 +1,28 @@
 package com.bank.controller;
 
 import com.bank.model.Response;
+
 import com.bank.model.User;
 import com.bank.service.UserServiceImpl;
 import com.bank.service.helpers.AuthenticationRequest;
 import com.bank.service.helpers.JwtHandler;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.AuthenticationException;
+
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
+
 
 @RestController
 @RequestMapping
@@ -28,6 +33,7 @@ public class AuthController {
     private final AuthenticationManager authenticationManager;
     private final UserServiceImpl userService;
     private final JwtHandler jwtHandler;
+
 
     @Autowired
     private ObjectMapper objectMapper;
@@ -70,5 +76,4 @@ public class AuthController {
         return new ResponseEntity<>(response, response.getStatus());
 
     }
-
 }
