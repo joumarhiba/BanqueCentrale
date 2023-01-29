@@ -35,4 +35,8 @@ public depotAmountStandard(compte: Compte): Observable<Compte> {
   return this.http.put<Compte>(`${this.apiServerUrl}/registration/depotAmountStandard`, compte)
 }
 
+public depotAmountProfessionnel(compte: Compte): Observable<Compte> {
+  return this.http.put<Compte>(`${this.apiServerUrl}/registration/depotAmountProfessionnel`, compte)
+}
+
 }

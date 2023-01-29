@@ -1,14 +1,13 @@
 import {HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Compte } from '../compte/Compte';
+import {MatSnackBar} from '@angular/material/snack-bar';
 import { AgentService } from './agent.service';
-
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
-import { DialogProfessionnelComponent } from '../client/dialog-professionnel/dialog-professionnel.component';
 import { MatDialog } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Compte } from '../compte/Compte';
 
 @Component({
   selector: 'app-agent',
@@ -31,7 +30,7 @@ export class AgentComponent implements OnInit {
     id:1
   };
 
-  constructor(private agentService: AgentService,private formBuilder :FormBuilder, public dialog: MatDialog) { }
+  constructor(private agentService: AgentService,private formBuilder :FormBuilder, public dialog: MatDialog, private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.addAmountForm = this.formBuilder.group({
@@ -109,26 +108,52 @@ else {
 
 
   compteInfos(compte: Compte){
+    if(this.compteDetails.status) {
     this.compteDetails = compte
         console.log("compte details "+this.compteDetails.id+" compte amount "+this.compteDetails.amount);
+    }else {
+      this.openSnackBar('ce compte non-activé', 'ok')
+    }
   }
 
 
 
   depot() {
+    if(this.compteDetails.type == 'Standard'){
+      if(this.compteDetails.status) {
+
+        console.log(this.addAmountForm.value);
+        this.compteDetails.amount = this.addAmountForm.value.amount
+        this.addAmountForm.value.compte = this.compteDetails
+
+        this.agentService.depotAmountStandard(this.compteDetails).subscribe(
+          (response : Compte) => {
+              console.log(response.amount);
+              window.location.reload()
+          },
+          (error: HttpErrorResponse) => {
+            console.log(error);
+          }
+    )
+      }
+
+  }
+  if(this.compteDetails.type == 'Professionnel') {
     console.log(this.addAmountForm.value);
     this.compteDetails.amount = this.addAmountForm.value.amount
     this.addAmountForm.value.compte = this.compteDetails
 
-    this.agentService.depotAmountStandard(this.compteDetails).subscribe(
+    this.agentService.depotAmountProfessionnel(this.compteDetails).subscribe(
       (response : Compte) => {
           console.log(response.amount);
+          window.location.reload()
     },
       (error: HttpErrorResponse) => {
         console.log(error);
       }
     )
-    window.location.reload()
+  }
+    //
   }
 
 
@@ -147,5 +172,8 @@ else {
     button.click();
   }
 
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action);
+  }
 
 }
