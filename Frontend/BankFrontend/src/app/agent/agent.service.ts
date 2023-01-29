@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { API_URL } from 'src/config/api.constants';
 import { Compte } from '../compte/Compte';
 
 @Injectable({
@@ -10,7 +11,8 @@ export class AgentService {
 
   public amount: number = 200
 
-  private apiServerUrl = 'http://localhost:8080';
+  private apiServerUrl = API_URL;
+  // private apiServerUrl = 'http://localhost:8080';
 
   constructor(private http: HttpClient) { }
 

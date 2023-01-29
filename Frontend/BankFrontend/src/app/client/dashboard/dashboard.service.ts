@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Compte } from 'src/app/compte/Compte';
+import { API_URL } from 'src/config/api.constants';
 import { Client } from './Client';
 
 @Injectable({
@@ -10,7 +11,8 @@ import { Client } from './Client';
 })
 export class DashboardService {
 
-  private api = 'http://localhost:8080';
+  // private api = 'http://localhost:8080';
+  private api = API_URL;
   public compteDetails : Compte = {
     id:0,
     enable:false,
