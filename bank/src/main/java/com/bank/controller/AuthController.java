@@ -46,9 +46,10 @@ public class AuthController {
                             authenticationRequest.getPassword())
             );
 
-            final User user = userService.loadUserByUsername(authenticationRequest.getEmail() + ":" + role);
+            final User user = userService.loadUserByUsername(authenticationRequest.getEmail() + ":" + role.orElse("CLIENT"));
 
             if (user != null) {
+                System.out.println("inside jwt");
                 String jwt = jwtHandler.generateToken(user);
                 response = new Response(
                         HttpStatus.OK,
