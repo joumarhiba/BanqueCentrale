@@ -40,6 +40,7 @@ public class WebSecurityConfig {
         http
                 .csrf()
                 .disable()
+//                .cors(Customizer.withDefaults())
                 .authorizeHttpRequests()
                 .requestMatchers("/registration/**")
                 .permitAll()
