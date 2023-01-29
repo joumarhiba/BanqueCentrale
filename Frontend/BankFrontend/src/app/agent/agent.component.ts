@@ -28,11 +28,7 @@ export class AgentComponent implements OnInit {
   public comptes: Compte[] = [];
   public compte! : Compte;
   public compteDetails : any ={
-    id:22,
-    type: 'Standard',
-    amount: 0,
-    agent: {},
-    client: {}
+    id:1
   };
 
   constructor(private agentService: AgentService,private formBuilder :FormBuilder, public dialog: MatDialog) { }
@@ -40,7 +36,7 @@ export class AgentComponent implements OnInit {
   ngOnInit(): void {
     this.addAmountForm = this.formBuilder.group({
       amount : ['', Validators.required],
-      compte : ['', Validators.required]
+      compte : [this.compteDetails, Validators.required]
     })
     this.getAllProfessionnelsComptes()
   }
@@ -114,10 +110,7 @@ else {
 
   compteInfos(compte: Compte){
     this.compteDetails = compte
-    this.dialog.open(DialogProfessionnelComponent, {
-      width:'30%',
-    });
-    console.log("compte details "+this.compteDetails.id+" compte amount "+this.compteDetails.amount);
+        console.log("compte details "+this.compteDetails.id+" compte amount "+this.compteDetails.amount);
   }
 
 
@@ -127,7 +120,7 @@ else {
     // console.log('amount : '+this.addAmountForm.value);
     console.log(this.addAmountForm.value);
 
-    this.agentService.depotAmountStandard(this.addAmountForm.value).subscribe(
+    this.agentService.depotAmountStandard(this.compteDetails).subscribe(
       (response : Compte) => {
           console.log(response.amount);
     },
@@ -135,6 +128,7 @@ else {
         console.log(error);
       }
     )
+    window.location.reload()
   }
 
 

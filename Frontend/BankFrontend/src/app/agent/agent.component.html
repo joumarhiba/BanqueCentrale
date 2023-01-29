@@ -32,7 +32,7 @@
         <td mat-cell *matCellDef="let row">
           <!-- <button mat-stroked-button (click)="compteInfos(row)">Dépôt</button> -->
           <div class="text-end mb-4">
-          <a class="text-fuchsia-900 hover:text-fuchsia-800 hover:cursor-pointer" (click)="onOpenModal('loginCompany')" data-toggle="modal" data-target="#LoginCompanyModal">Dépôt</a>
+          <a class="text-fuchsia-900 hover:text-fuchsia-800 hover:cursor-pointer" (click)="onOpenModal('loginCompany')" (click)="compteInfos(row)" data-toggle="modal" data-target="#LoginCompanyModal">Dépôt</a>
             </div>
         </td>
       </ng-container>
@@ -51,6 +51,11 @@
 </div>
 
 
+
+
+
+
+
 <div class="modal fade" id="LoginCompanyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -60,14 +65,16 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+
       <form [formGroup]="addAmountForm">
         <mat-form-field appearance="fill">
             <mat-label>Montant</mat-label>
             <input type="hidden" formControlName="compte" />
-            <input type="email" matInput formControlName="amount" placeholder="Ex. 2000">
-        </mat-form-field>
-    </form>
-    <div mat-dialog-actions [align]="'end'">
+            <input type="number" matInput formControlName="amount" placeholder="Ex. 2000">
+          </mat-form-field>
+        </form>
+
+<div mat-dialog-actions [align]="'end'">
       <button class="p-2 bg-black text-white ml-32" (click)="depot()">Ajouter</button>
   </div>
     </div>
