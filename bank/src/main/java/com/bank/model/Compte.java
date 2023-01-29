@@ -1,10 +1,7 @@
 package com.bank.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-<<<<<<< HEAD
-=======
 import com.fasterxml.jackson.annotation.JsonProperty;
->>>>>>> dca1a892c5daacedc5c3bdd1567fc84b28e37aff
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -32,10 +29,7 @@ public abstract class Compte {
 
     @ManyToOne
     @JsonIgnore
-<<<<<<< HEAD
-=======
     @JsonProperty("agent")
->>>>>>> dca1a892c5daacedc5c3bdd1567fc84b28e37aff
     private Agent agent;
 
 
