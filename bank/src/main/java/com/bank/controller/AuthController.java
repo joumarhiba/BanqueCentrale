@@ -27,7 +27,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping
 @RequiredArgsConstructor
-@CrossOrigin(origins= {"*"}, maxAge = 4800, allowCredentials = "false")
+//@CrossOrigin(origins= {"*"}, maxAge = 4800, allowCredentials = "false")
 public class AuthController {
 
     private final AuthenticationManager authenticationManager;
