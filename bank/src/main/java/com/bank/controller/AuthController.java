@@ -22,7 +22,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping
 @RequiredArgsConstructor
-@CrossOrigin(origins = "https://bankconnect.herokuapp.com")
+@CrossOrigin(origins= {"*"}, maxAge = 4800, allowCredentials = "false")
 public class AuthController {
 
     private final AuthenticationManager authenticationManager;
