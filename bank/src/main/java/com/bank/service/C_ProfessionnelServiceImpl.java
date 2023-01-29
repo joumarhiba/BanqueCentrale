@@ -3,6 +3,10 @@ package com.bank.service;
 import com.bank.model.Agent;
 import com.bank.model.C_Professionnel;
 import com.bank.model.C_Standard;
+<<<<<<< HEAD
+=======
+import com.bank.model.Client;
+>>>>>>> dca1a892c5daacedc5c3bdd1567fc84b28e37aff
 import com.bank.repository.C_StandardRepo;
 import com.bank.repository.C_professionnelRepo;
 import com.bank.repository.ClientRepo;
@@ -13,6 +17,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+<<<<<<< HEAD
+=======
+import java.util.Random;
+>>>>>>> dca1a892c5daacedc5c3bdd1567fc84b28e37aff
 
 @Service
 @Slf4j
@@ -28,6 +36,7 @@ public class C_ProfessionnelServiceImpl implements CompteService{
 
    // private final C_Professionnel c_professionnel;
 
+<<<<<<< HEAD
     public String addCompteByClient(C_Professionnel professionnel) throws Exception {
 
         c_professionnelRepo.save(professionnel);
@@ -46,17 +55,44 @@ public class C_ProfessionnelServiceImpl implements CompteService{
             try {
 
                 addCompteByClient(
+=======
+    public List<C_Professionnel> getCStandardsByClient(Client client) {
+        return c_professionnelRepo.findByClient(client);
+    }
+
+    public C_Professionnel addCompteByClient(C_Professionnel professionnel) throws Exception {
+        Random random = new Random();
+        long numC = 100000000L + (long)(random.nextDouble()*900000000L);
+        professionnel.setNumC(numC);
+        return c_professionnelRepo.save(professionnel);
+
+    }
+
+    public C_Professionnel saveAccount(CompteRequest request) throws Exception {
+        if(request.getType().equalsIgnoreCase("Professionnel")){
+            try {
+
+                var compte = addCompteByClient(
+>>>>>>> dca1a892c5daacedc5c3bdd1567fc84b28e37aff
                         new C_Professionnel(request.getType(), request.getClient_id(), request.getAgent_id(), request.getNumC())
                 );
                 // clientRepo.updateCompte(request.getClient_id().getId(),new C_Standard(request.getId(), request.getType(), request.getAmount(), request.getClient_id(), request.getAgent_id()));
 
+<<<<<<< HEAD
                 return "it has saved successfully & agent id = "+request.getClient_id();
+=======
+                return compte;
+>>>>>>> dca1a892c5daacedc5c3bdd1567fc84b28e37aff
             }catch (Exception ex){
                 throw new Exception(ex.getMessage());
             }
 
         } else {
+<<<<<<< HEAD
             return "check the type of the account must be Professionnel";
+=======
+            return null;
+>>>>>>> dca1a892c5daacedc5c3bdd1567fc84b28e37aff
         }
     }
 

@@ -17,19 +17,38 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { CompteComponent } from './compte/compte.component';
 import { HttpClient } from '@angular/common/http';
+<<<<<<< HEAD
 import { LoginComponent } from './pages/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SignupComponent } from './pages/signup/signup.component';
+=======
+import { DashboardComponent } from './client/dashboard/dashboard.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import { DialogStandardComponent } from './client/dialog-standard/dialog-standard.component';
+import {MatSelectModule} from '@angular/material/select';
+import { DialogProfessionnelComponent } from './client/dialog-professionnel/dialog-professionnel.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+>>>>>>> dca1a892c5daacedc5c3bdd1567fc84b28e37aff
 
 @NgModule({
   declarations: [
     AppComponent,
     AgentComponent,
     CompteComponent,
+<<<<<<< HEAD
     LoginComponent,
     SignupComponent
   ],
   imports: [
+=======
+    DashboardComponent,
+    DialogStandardComponent,
+    DialogProfessionnelComponent,
+  ],
+  imports: [
+    MatSelectModule,
+    MatDialogModule,
+>>>>>>> dca1a892c5daacedc5c3bdd1567fc84b28e37aff
     MatTableModule,
     MatInputModule,
     MatSortModule,
@@ -44,8 +63,12 @@ import { SignupComponent } from './pages/signup/signup.component';
     RouterModule,
     BrowserAnimationsModule,
     HttpClientModule,
+<<<<<<< HEAD
     FormsModule,
     ReactiveFormsModule
+=======
+    ReactiveFormsModule,FormsModule
+>>>>>>> dca1a892c5daacedc5c3bdd1567fc84b28e37aff
   ],
   exports: [RouterModule,MatInputModule
   ],

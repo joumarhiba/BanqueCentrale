@@ -9,6 +9,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.Customizer;
+
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -39,11 +40,10 @@ public class WebSecurityConfig {
         http
                 .csrf()
                 .disable()
-                .cors(Customizer.withDefaults())
                 .authorizeHttpRequests()
                 .requestMatchers("/registration/**")
                 .permitAll()
-                .requestMatchers("/auth/**")
+                .requestMatchers("/*/auth")
                 .permitAll()
                 .anyRequest().authenticated()
                 .and()
@@ -59,6 +59,7 @@ public class WebSecurityConfig {
     public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception{
         return configuration.getAuthenticationManager();
     }
+
 
     @Bean
     public DaoAuthenticationProvider daoAuthenticationProvider(){

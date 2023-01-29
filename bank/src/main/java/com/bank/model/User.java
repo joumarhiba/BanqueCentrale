@@ -2,17 +2,25 @@ package com.bank.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+<<<<<<< HEAD
 
+=======
+>>>>>>> dca1a892c5daacedc5c3bdd1567fc84b28e37aff
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.io.Serializable;
+<<<<<<< HEAD
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
+=======
+import java.util.Collection;
+import java.util.Collections;
+>>>>>>> dca1a892c5daacedc5c3bdd1567fc84b28e37aff
 
 @Data
 @NoArgsConstructor
@@ -36,17 +44,24 @@ public abstract class User implements UserDetails, Serializable {
     private Boolean locked = false;
     private Boolean enabled = true;
 
+<<<<<<< HEAD
     @Transient
     private List<GrantedAuthority> grantedAuthorityList;
 
 
+=======
+>>>>>>> dca1a892c5daacedc5c3bdd1567fc84b28e37aff
     public User(String username, String email, String password, UserRole userRole) {
         this.username = username;
         this.email = email;
         this.password = password;
+<<<<<<< HEAD
         this.userRole = userRole;
         this.grantedAuthorityList.add(new SimpleGrantedAuthority(userRole.toString()));
 
+=======
+       this.userRole = userRole;
+>>>>>>> dca1a892c5daacedc5c3bdd1567fc84b28e37aff
     }
 
     @Override
@@ -75,5 +90,11 @@ public abstract class User implements UserDetails, Serializable {
         return enabled;
     }
 
+<<<<<<< HEAD
 }
 
+=======
+
+
+}
+>>>>>>> dca1a892c5daacedc5c3bdd1567fc84b28e37aff

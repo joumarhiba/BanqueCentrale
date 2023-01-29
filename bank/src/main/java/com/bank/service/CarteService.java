@@ -15,6 +15,11 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+<<<<<<< HEAD
+=======
+import java.util.List;
+
+>>>>>>> dca1a892c5daacedc5c3bdd1567fc84b28e37aff
 @Service
 @Slf4j
 @RequiredArgsConstructor
@@ -78,4 +83,13 @@ public class CarteService {
         }
     }
 
+<<<<<<< HEAD
+=======
+
+
+//    public List<C_Standard> findCarteByCStandard(){
+//        carteRepo.
+//    }
+
+>>>>>>> dca1a892c5daacedc5c3bdd1567fc84b28e37aff
 }

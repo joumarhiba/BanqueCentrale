@@ -6,6 +6,9 @@ import { AgentService } from './agent.service';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
+import { DialogProfessionnelComponent } from '../client/dialog-professionnel/dialog-professionnel.component';
+import { MatDialog } from '@angular/material/dialog';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-agent',
@@ -13,7 +16,11 @@ import {MatTableDataSource} from '@angular/material/table';
   styleUrls: ['./agent.component.css']
 })
 export class AgentComponent implements OnInit {
-  displayedColumns: string[] = ['numC', 'type', 'amount', 'enable'];
+
+
+  addAmountForm !: FormGroup
+
+  displayedColumns: string[] = ['numC', 'type', 'amount', 'enable', 'option'];
   dataSource!: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -22,9 +29,17 @@ export class AgentComponent implements OnInit {
   public comptes: Compte[] = [];
   public compte! : Compte;
 
-  constructor(private agentService: AgentService) { }
+  public compteDetails : any ={
+    id:1
+  };
+
+  constructor(private agentService: AgentService,private formBuilder :FormBuilder, public dialog: MatDialog) { }
 
   ngOnInit(): void {
+    this.addAmountForm = this.formBuilder.group({
+      amount : ['', Validators.required],
+      compte : [this.compteDetails, Validators.required]
+    })
     this.getAllProfessionnelsComptes()
   }
 
@@ -80,7 +95,6 @@ else if(compte.type == 'Professionnel') {
 }
 else {
   console.log("error in type of account");
-  
 }
 }
 
@@ -92,6 +106,46 @@ else {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+
+  compteInfos(compte: Compte){
+    this.compteDetails = compte
+        console.log("compte details "+this.compteDetails.id+" compte amount "+this.compteDetails.amount);
+  }
+
+
+
+  depot() {
+    console.log(this.addAmountForm.value);
+    this.compteDetails.amount = this.addAmountForm.value.amount
+    this.addAmountForm.value.compte = this.compteDetails
+
+    this.agentService.depotAmountStandard(this.compteDetails).subscribe(
+      (response : Compte) => {
+          console.log(response.amount);
+    },
+      (error: HttpErrorResponse) => {
+        console.log(error);
+      }
+    )
+    window.location.reload()
+  }
+
+
+  public onOpenModal(mode? : string) : void{
+    const container = document.getElementById('main-container');
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.style.display = 'none';
+    button.setAttribute('data-toggle', 'modal');
+
+    if(mode === "loginCompany") {
+      document.getElementById('close-modal')?.click();
+      button.setAttribute('data-target', '#LoginCompanyModal')
+    }
+    container?.appendChild(button);
+    button.click();
   }
 
 }

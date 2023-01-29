@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from './services/auth.service';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +10,18 @@ import { AuthService } from './services/auth.service';
 })
 export class AppComponent {
   title = 'BankFrontend';
+  public credentials : any = {
+    id: 11,
+    email: 'Newclient@gmail.com',
+    username: 'test2',
+    userRole:'CLIENT',
+    password:'12345678',
+    telephone:'0666666667',
+    enabled: false
+  }
+  private content = new BehaviorSubject<any>(this.credentials)
+  public share = this.content.asObservable()
+
 
   isAuthenticated!:boolean;
 

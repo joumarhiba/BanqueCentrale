@@ -28,6 +28,7 @@ import java.util.*;
 @Transactional
 public class ClientServiceImpl implements ClientService {
 
+
     public static String uploadDir = System.getProperty("client.dir")+"src/main/resources/static";
 
     private final ClientRepo clientRepo;
@@ -53,6 +54,7 @@ public class ClientServiceImpl implements ClientService {
         log.info("fetching all clients");
         return clientRepo.findAll();
     }
+
 
 
     public String signUpClient(Client client){

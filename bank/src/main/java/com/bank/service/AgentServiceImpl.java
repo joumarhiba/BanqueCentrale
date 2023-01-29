@@ -34,11 +34,18 @@ public class AgentServiceImpl implements AgentService {
         agent.setPassword(bCryptPasswordEncoder.encode(password));
         return agentRepo.save(agent);
     }
+<<<<<<< HEAD
 
 
     public User loadUserByEmail(String email) throws UsernameNotFoundException {
 //        Optional<Agent> agent = agentRepo.findByUsername(username);
         return agentRepo.findByEmail(email).orElseThrow(() -> new UsernameNotFoundException("Agent not found......"));
+=======
+    public User loadUserByEmail(String email) throws UsernameNotFoundException {
+//        Optional<Client> client = clientRepo.findByUsername(username);
+        return agentRepo.findByEmail(email)
+                .orElseThrow(() -> new UsernameNotFoundException("Client not found......"));
+>>>>>>> dca1a892c5daacedc5c3bdd1567fc84b28e37aff
     }
 
     @Override
@@ -62,6 +69,9 @@ public class AgentServiceImpl implements AgentService {
         confirmationTokenService.saveConfirmationToken(confirmationToken);
         return "the token is : "+token;
     }
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> dca1a892c5daacedc5c3bdd1567fc84b28e37aff
 }
