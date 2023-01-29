@@ -25,6 +25,7 @@ public class UserServiceImpl implements UserDetailsService {
         System.out.println(" email and role " + emailAndRole);
         final String email = emailAndRole.split(":")[0];
         final String userRole = emailAndRole.split(":")[1];
+        System.out.println(" EAMIL INSIDE LOAD BY " + email);
 
         if("CLIENT".equals(userRole)){
             System.out.println(" inside load by user name client");
