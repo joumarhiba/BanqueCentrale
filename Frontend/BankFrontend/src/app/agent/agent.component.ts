@@ -108,36 +108,38 @@ else {
 
 
   compteInfos(compte: Compte){
-    if(this.compteDetails.status) {
     this.compteDetails = compte
         console.log("compte details "+this.compteDetails.id+" compte amount "+this.compteDetails.amount);
-    }else {
-      this.openSnackBar('ce compte non-activé', 'ok')
-    }
+    
+    // else {
+    //   this.openSnackBar('ce compte non-activé', 'ok')
+    // }
   }
 
 
 
   depot() {
-    if(this.compteDetails.type == 'Standard'){
-      if(this.compteDetails.status) {
+    // if(this.compteDetails.type == 'Standard'){
+      // if(this.compteDetails.status) {
 
         console.log(this.addAmountForm.value);
         this.compteDetails.amount = this.addAmountForm.value.amount
         this.addAmountForm.value.compte = this.compteDetails
+        console.log(this.compteDetails);
+
 
         this.agentService.depotAmountStandard(this.compteDetails).subscribe(
           (response : Compte) => {
               console.log(response.amount);
-              window.location.reload()
+              // window.location.reload()
           },
           (error: HttpErrorResponse) => {
             console.log(error);
           }
     )
-      }
+      // }
 
-  }
+
   if(this.compteDetails.type == 'Professionnel') {
     console.log(this.addAmountForm.value);
     this.compteDetails.amount = this.addAmountForm.value.amount
